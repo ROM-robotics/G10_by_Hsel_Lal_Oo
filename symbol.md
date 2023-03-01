@@ -27,6 +27,11 @@ Eq(x + 1, 4)
 >>> sp.solve(equation_1)
 [3]
 ```
+x^2 - 2 = 0 ဆိုရင် x = ?
+```
+>>> sp.solve(x**2 -2, x)
+[-sqrt(2), sqrt(2)]
+```
 solve မလုပ်ဘဲ simplify လည်းလုပ်နိုင်တယ်။
 ```
 >>> a = (x+1)**2
@@ -65,30 +70,34 @@ factor() နဲ့ ဆခွဲကိန်းပြန်ခွဲမယ်။
 >>> fac_express
 x*(x + 2*y)
 ```
-
-# take the deriviative of sin(x) e^x
+ sin(x) e^x ကို ရှိတ်ရအောင်။
+```
 diff_x =sympy.diff(sin(x)*exp(x), x)
-
-# compute integral of diff_x
+```
+ရှိတ်ထားတာကို ပြန်ရိတ်မယ်။
+```
 sympy.integrate(diff_x)
-
+```
+သီးခြားထပ် ရိတ်ကြည့်မယ်။
+```
 sympy.integrate(sin(x**2), (x,-oo,oo))
-
+```
+လစ်မစ် x ဟာ 0 ကိုချဥ်းကပ်သွားတဲ့အခါ ဖန်ရှင်ကဘာဖြစ်မလဲ?
+```
 # find limx-->0 , sin(x)/x
 sympy.limit(sin(x)/x, x, 0)
+```
+y**'' - y = e**t , y နှစ်ခုရှိတ်တဲ့အထဲက y နှုတ်ရင် e^t ရတယ်ဆိုတဲ့ differential equation ကိုရှင်းဖို့ဆို dsolve()
 
-# solve x**2 - 2 = 0
-sympy.solve(x**2 - 2, x)
-
-# solve the differential equation y**'' - y = e**t
-y = Function('y')
-sympy.dsolve( Eq( y(t).diff(t,t) - y(t), exp(t) ), y(t) ) 
-
-# find eigen values of Matrix[1 2; 2 2]
-sympy.Matrix([[1,2],[2,2]]).eigenvals()
-
-
-
-
-
- 
+```
+>>> y = sp.Function('y')
+>>> t = sp.Symbol('t')
+>>> sp.dsolve( sp.Eq( y(t).diff(t,t) - y(t), sp.exp(t) ), y(t) )
+Eq(y(t), C2*exp(-t) + (C1 + t/2)*exp(t))
+```
+ဒါကတော့ Matrix[ 1 2; 2 2] ရဲ့ အိုင်ဂန် values ရှာဖို့ပေါ့။
+```
+>>> M = sp.Matrix([[1,2],[2,2]])
+>>> M.eigenvals()
+{3/2 - sqrt(17)/2: 1, 3/2 + sqrt(17)/2: 1}
+```
