@@ -2,8 +2,13 @@
 
 # e, pi, oo
 
-sympy.symbol(x)
-x+1
+```
+>>> x = sp.Symbol('x')
+>>> x
+x
+>>> x+1
+x + 1
+```
 
 # equal sign x+1=4 ERROR
 sympy.Eq(x+1, 4)
